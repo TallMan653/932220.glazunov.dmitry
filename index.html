@@ -1,79 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Task 4</title>
+    <title>Frontend Task №6</title>
     <link rel="stylesheet" href="index.css">
+    <script src="scripts.js"></script>
 </head>
 <body>
-    <header><img src="img/logo.png" id="logo" alt="logo"></header>
-    <div class="wrapper">
-        <div class="menuWrapper">
-            <div class="menu">
-                <div>Main page</div>
-                <div>Secondary page</div>
-                <div>Some other page</div>
-                <div>More pages to the god of pages</div>
-                <div>The last page</div>
-            </div>
-        </div>
-        
-        <div class="advertsWrapper">
-            <div class="advert">
-                <p>Very important information!</p>
-                <p>Many,many very usefull and important information!</p>
-            </div>
+    <div id="fogBlock" onmousedown="closeWin()"></div>
 
-            <div class="advert">
-                <p class="header">Some new header!</p>
-                <p>
-                    For example, some new and usefull fixed text. And many another text and more text...
-                </p>
-            </div>
-        </div>
-        
-        <div class="newsFeed">
-            <div class="post">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
-                <hr>
-                <p class="like">Like</p>
-                <p class="comment">Comment</p>
-            </div>
-
-            <div class="post">
-                <img src="img/cat.png" alt="A cat">
-                <hr>
-                <p class="like">Like</p>
-                <p class="comment">Comment</p>
-            </div>
-
-            <div class="post">
-                <p class="header">Some header</p>
-                <hr>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
-                </p>
-                <hr>
-                <p class="like">Like</p>
-                <p class="comment">Comment</p>
-            </div>
-
-            <div class="post">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
-                <hr>
-                <p class="like">Like</p>
-                <p class="comment">Comment</p>
-            </div>
-
-            <div class="post">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
-                <hr>
-                <p class="like">Like</p>
-                <p class="comment">Comment</p>
-            </div>
-
+    <div class="news">
+        <h2>Новость 1</h2>
+        <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae voluptatum suscipit sed delectus facere veritatis autem quisquam unde nam doloribus?
+        </p>
+        <div class="buttonWrapper">
+            <button onmousedown="openWin('new1')">Открыть всплывающее окно</button>
         </div>
     </div>
-    <footer>Simple footer (text in the center)</footer>
+
+    <div class="news">
+        <h2>Новость 2</h2>
+        <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae voluptatum suscipit sed delectus facere veritatis autem quisquam unde nam doloribus?
+        </p>
+        <div class="buttonWrapper">
+          <button onmousedown="openWin('new2')">Открыть всплывающее окно</button>
+        </div>
+    </div>
+
+    <div class="news">
+        <h2>Новость 3</h2>
+        <p>
+            Lorem ipsum dolor sit amet consectet    ur, adipisicing elit. Beatae voluptatum suscipit sed delectus facere veritatis autem quisquam unde nam doloribus?
+        </p>
+        <div class="buttonWrapper">
+          <button onmousedown="openWin('new3')">Открыть всплывающее окно</button>
+        </div>
+    </div>
+
+    <div class="popupWin" id="new1">
+      <p class="header">Новость 1</p>
+      <p>
+        Новость 1: Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet asperiores aut nihil! Corporis debitis labore fugiat id, eligendi ratione veritatis!
+        <br>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam hic, ipsa, ullam, cupiditate eveniet at voluptate corrupti commodi nobis ratione voluptatem! Vel animi totam cupiditate doloribus ad ab exercitationem officia eveniet impedit? Deleniti quasi nisi consectetur perspiciatis quibusdam nostrum, enim perferendis nam, magni molestias recusandae id libero vitae, repudiandae praesentium.
+      </p>
+    </div>
+    <div class="popupWin" id="new2">
+      <p class="header">Новость 2</p>
+      <p>
+        Новость 2: Lorem ipsum dolor sit amet consectetur adipisicing elit. A, alias.
+        <br>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam hic, ipsa, ullam, cupiditate eveniet at voluptate corrupti commodi nobis ratione voluptatem! Vel animi totam cupiditate doloribus ad ab exercitationem officia eveniet impedit? Deleniti quasi nisi consectetur perspiciatis quibusdam nostrum, enim perferendis nam, magni molestias recusandae id libero vitae, repudiandae praesentium.
+      </p>
+    </div>
+    <div class="popupWin" id="new3">
+      <p class="header">Новость 3</p>
+      <p>
+        Новость 3: Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet asperiores aut nihil! Corporis debitis labore fugiat id, eligendi ratione veritatis!
+        <br>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam hic, ipsa, ullam, cupiditate eveniet at voluptate corrupti commodi nobis ratione voluptatem! Vel animi totam cupiditate doloribus ad ab exercitationem officia eveniet impedit? Deleniti quasi nisi consectetur perspiciatis quibusdam nostrum, enim perferendis nam, magni molestias recusandae id libero vitae, repudiandae praesentium.
+      </p>
+    </div>
 </body>
 </html>
