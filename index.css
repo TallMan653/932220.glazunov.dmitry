@@ -1,80 +1,65 @@
 * {
     margin: 0;
+    padding: 0;
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 26px;
+    box-sizing: border-box;
 }
 
-.news {
-    background-color: #b6f5f5;
+.wrapper {
     width: 900px;
-    height: 152px;
+    height: 500px;
     margin: auto;
-    border-left: solid #cbcbcb 2px;
-    border-right: solid #cbcbcb 2px;
-    border-bottom: solid black 2px;
+    position: relative;
 }
 
-.news:hover {
-    background-color: #ff5555;
+.buttonsWrapper {
+    position: relative;
 }
 
-h2 {
-    padding: 15px 0 5px 20px;   
-}
-
-p {
-    padding-left: 20px;
-    padding-bottom: 10px;
-    line-height: 120%;
-}
-
-button {
-    line-height: 200%;
-    width: 195px;
-    background: linear-gradient(#00fd00, #008900);
+.button {
+    width: 300px;
+    height: 55px;
+    background-color: red;
     color: white;
-    border: none;
-    box-shadow: 0 0 3px rgb(53, 53, 53);
-}
-
-button:hover {
-    scale: 0.99;
-}
-
-.buttonWrapper {
+    border: 2px solid black;
+    box-sizing: border-box;
+    margin: 0;
     display: flex;
     justify-content: center;
-    margin-top: 5px;
+    align-items: center;
 }
 
-.popupWin {
-    background-color: #e1ff73;
-    display: none;
-    height: auto;
-    position: fixed;
-    top: calc(50% - 140px);
-    left: calc(50% - 540px/2);
-    width: 540px;
-    z-index: 2;
+#leftButton {
+    float: left;
 }
 
-.popupWin .header {
-    font-weight: bold;
-    font-size: 36px;
-    text-align: center;
-    padding: 0.5em 0 1em 0;
+#rightButton {
+    float: right;
 }
 
-.popupWin p {
-    padding: 0 1em 1.25em 1.25em;
-    line-height: 120%;
-}
-
-#fogBlock {
-    width: 100%;
+#leftBlock {
+    background-color: blue;
+    padding: 20px;
+    width: 850px;
     height: 100%;
-    background-color: white;
-    opacity: 0.75;
-    position: fixed;
+    float: left;
+}
+
+#rightBlock {
+    background-color: green;
+    padding: 20px;
+    width: 50px;
+    height: 100%;
+    float: right;
+}
+
+img {
+    width: 600px;
+    height: 355px;
+}
+
+#rightBlock img {
+
     display: none;
-    z-index: 1;
 }
