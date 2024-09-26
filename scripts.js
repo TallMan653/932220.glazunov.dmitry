@@ -1,53 +1,38 @@
-const OFFSET = 50; 
+function AddRow(){
+    var row = document.querySelector(".row").cloneNode(true);
+    var table = document.querySelector("#table");
+    table.appendChild(row);
+}
 
-function createFigure(figureName){
-    var numOfFigures = document.getElementById("numberOfFigures").value;
-    for (let i=0; i < numOfFigures; i++){
-        let div = document.createElement('div');
-        div.className = 'Shape';
+function DeleteRow(button){
+    button.parentElement.remove();
+}
 
-        let size = Math.random() * 300 + 5;
-        let heightOfWindow = document.documentElement.clientHeight - size - OFFSET - 10;
-        let widthOfWindow = document.documentElement.clientWidth - size - 10;
-
-        div.style.width = size + 'px';
-        div.style.height = size + 'px';
-        
-        div.style.top = Math.random() * heightOfWindow + OFFSET + 'px';
-        div.style.left = Math.random() * widthOfWindow + 'px';
-        
-        div.style.border = '1px solid black';
-
-        SelectFigure(figureName, div, size);
-
-        document.body.append(div);
-
-        div.onclick = function(){
-            div.style.background = "yellow";
-            div.style.opacity = '80%';
-        };
-        div.ondblclick = function(){div.remove()};
+function MoveUp(button){
+    let obj = button.parentElement.previousElementSibling;
+    if (obj){
+        button.parentElement.after(obj);
     }
 }
 
-function SelectFigure(figureName, div, size) {
-    switch (figureName) {
-        case "Circle":
-            div.style.borderRadius = size / 2 + 'px';
-            div.style.background = 'green';
-            break;
-        case "Square":
-            div.style.background = 'red';
-            div.style.width = size + 'px'; // Задаем ширину и высоту для квадрата
-            div.style.height = size + 'px';
-            break;
-        case "Triangle":
-            div.style.border = size / 2 + "px solid transparent";
-            div.style.borderBottom = size / 2 + "px solid blue";
-            div.style.width = "0px";
-            div.style.height = "0px";
-            break;
-        default:
-            break;
+function MoveDown(button){
+    let obj = button.parentElement.nextElementSibling;
+    if(obj){
+        button.parentElement.before(obj);
     }
+}
+
+function Save(){
+    let input_1 = document.querySelectorAll(".input1");
+    let input_2 = document.querySelectorAll(".input2");
+
+    var a = []
+    for (var i = 1; i < input_1.length; i++){
+        a.push(input_1[i].value + " : " + input_2[i].value);
+    }
+    a = JSON.stringify(a);
+    a = '{' + a.slice(1, a.length - 1) + '}';
+
+    let outputDiv = document.querySelector("#output");
+    outputDiv.innerHTML = a;
 }
