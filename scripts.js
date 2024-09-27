@@ -1,38 +1,89 @@
-function AddRow(){
-    var row = document.querySelector(".row").cloneNode(true);
-    var table = document.querySelector("#table");
-    table.appendChild(row);
+var mainText;
+var bgText;
+var pressedButton;
+var currentValue;
+var currentOperation;
+
+function Initialization(){
+    mainText = document.getElementById('mainText');
+    bgText = document.getElementById('bgText');
 }
 
-function DeleteRow(button){
-    button.parentElement.remove();
+function AddSymbol(number, button) {
+    if (currentOperation == '='){
+        mainText.textContent = '';
+        currentOperation = null;
+    }
+
+    if (mainText.textContent == '0' && number != '.'){
+        mainText.textContent = 'error';
+        bgText.textContent = '';
+        currentOperation = '=';
+    }
+    else if (mainText.textContent == '' && number == '.'){
+        mainText.textContent = '0' + number;
+    }
+    else{
+        mainText.textContent += number;
+    }
+    AddBorder(button);
 }
 
-function MoveUp(button){
-    let obj = button.parentElement.previousElementSibling;
-    if (obj){
-        button.parentElement.after(obj);
+function Clear(button){
+    mainText.textContent = '';
+    AddBorder(button);
+}
+
+function RemoveLastSymbol(button){
+    let newValue = mainText.textContent;
+    newValue = newValue.substring(0, newValue.length - 1);
+    mainText.textContent = newValue;
+    AddBorder(button);
+}
+
+function PressCalculateButton(button){
+    mainText.textContent = CalculateNewCurrentValue();
+    bgText.textContent = '';
+    currentOperation = '=';
+    AddBorder(button);
+}
+
+function CalculateNewCurrentValue() {
+    switch (currentOperation)
+    {
+        case '+':
+            return currentValue + GetNewCurrentValue();
+        case '-':
+            return currentValue - GetNewCurrentValue();
+        case '*':
+            return currentValue * GetNewCurrentValue();
+        case '/':
+            return currentValue / GetNewCurrentValue();
+        default:
+            return currentValue
     }
 }
 
-function MoveDown(button){
-    let obj = button.parentElement.nextElementSibling;
-    if(obj){
-        button.parentElement.before(obj);
-    }
+function AddBorder(button){
+    if (pressedButton)
+        pressedButton.style.boxShadow = 'none';
+    button.style.boxShadow = '1px 1px 1px #76b3d8, -1px -1px 1px #76b3d8';
+    pressedButton = button;
 }
 
-function Save(){
-    let input_1 = document.querySelectorAll(".input1");
-    let input_2 = document.querySelectorAll(".input2");
+function PressOperationButton(operation, button){
+    SetCurrentValue();
+    currentOperation = operation;
+    bgText.textContent = currentValue + currentOperation;
+    mainText.textContent = '';
+    AddBorder(button);
+}
 
-    var a = []
-    for (var i = 1; i < input_1.length; i++){
-        a.push(input_1[i].value + " : " + input_2[i].value);
-    }
-    a = JSON.stringify(a);
-    a = '{' + a.slice(1, a.length - 1) + '}';
+function SetCurrentValue(){
+    currentValue = Number(document.getElementById('mainText').textContent);
+}
 
-    let outputDiv = document.querySelector("#output");
-    outputDiv.innerHTML = a;
+function GetNewCurrentValue(){
+    SetCurrentValue();
+    return currentValue;
 }
