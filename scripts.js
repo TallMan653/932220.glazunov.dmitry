@@ -1,38 +1,71 @@
-function AddRow(){
-    var row = document.querySelector(".row").cloneNode(true);
-    var table = document.querySelector("#table");
-    table.appendChild(row);
+var isLightOn = false;
+function Initialization(){
+    document.getElementById('curtain').style.transition = '0.2s';
+    document.getElementById('light').style.transition = '0.2s';
+    document.getElementById('rabbit').style.transition = '0.5s';
+    document.getElementById('bird').style.transition = '0.5s';
+    document.getElementById('wizard').style.transition = '0.2s';
+    document.getElementById('hat').style.transition = '0.2s';
 }
 
-function DeleteRow(button){
-    button.parentElement.remove();
+function RaiseCurtain() {
+    let curtain = document.getElementById('curtain');
+    curtain.style.transition = '1s';
+    curtain.style.marginTop = '-100vh';
 }
 
-function MoveUp(button){
-    let obj = button.parentElement.previousElementSibling;
-    if (obj){
-        button.parentElement.after(obj);
+function ReplaceAnimal(currentAnimal) {
+    let bird = document.getElementById('bird');
+    let rabbit = document.getElementById('rabbit');
+    let upperPosition = '550px';
+    let lowerPosition = '650px';
+    bird.style.transition = rabbit.style.transition = '0.5s'
+
+
+    switch (currentAnimal){
+        case "bird":
+            rabbit.style.top = upperPosition;
+            bird.style.top = lowerPosition;
+            break;
+    
+        case "rabbit":
+            bird.style.top = upperPosition;
+            rabbit.style.top = lowerPosition;
+            break;
+    
+        default:
+            break;
     }
+    
 }
 
-function MoveDown(button){
-    let obj = button.parentElement.nextElementSibling;
-    if(obj){
-        button.parentElement.before(obj);
+function LightOn() 
+{
+    let elements = new Array();
+    elements[0] = document.getElementById('light');
+    elements[1] = document.getElementById('rabbit');
+    elements[2] = document.getElementById('hat');
+    elements[3] = document.getElementById('bird');
+    elements[4] = document.getElementById('wizard');
+
+    if (isLightOn){
+        elements[0].style.opacity = 0;
+
+        for (let i = 1; i < 5; i++){
+            elements[i].style.opacity = 0;
+            elements[i].style.transition = '0.2s'
+        }
+
+        isLightOn = false;
     }
-}
+    else{
+        elements[0].style.opacity = 0.5;
 
-function Save(){
-    let input_1 = document.querySelectorAll(".input1");
-    let input_2 = document.querySelectorAll(".input2");
+        for (let i = 1; i < 5; i++){
+            elements[i].style.opacity = 1;
+            elements[i].style.transition = '0.2s'
+        }
 
-    var a = []
-    for (var i = 1; i < input_1.length; i++){
-        a.push(input_1[i].value + " : " + input_2[i].value);
+        isLightOn = true;
     }
-    a = JSON.stringify(a);
-    a = '{' + a.slice(1, a.length - 1) + '}';
-
-    let outputDiv = document.querySelector("#output");
-    outputDiv.innerHTML = a;
 }
