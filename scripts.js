@@ -3,6 +3,7 @@ var bgText;
 var pressedButton;
 var currentValue;
 var currentOperation;
+var lastOperation;
 
 function Initialization(){
     mainText = document.getElementById('mainText');
@@ -10,47 +11,47 @@ function Initialization(){
 }
 
 function AddSymbol(number, button) {
-    if (currentOperation == '='){
+    if (currentOperation == '=') {
         mainText.textContent = '';
         currentOperation = null;
     }
-
-    if (mainText.textContent == '0' && number != '.'){
+    
+    if (mainText.textContent == '0' && number != '.') {
         mainText.textContent = 'error';
         bgText.textContent = '';
         currentOperation = '=';
-    }
-    else if (mainText.textContent == '' && number == '.'){
+    } else if (mainText.textContent == '' && number == '.') {
         mainText.textContent = '0' + number;
-    }
-    else{
+    } else if (number == '.' && mainText.textContent.includes('.')) {
+        return;
+    } else {
         mainText.textContent += number;
     }
     AddBorder(button);
 }
 
-function Clear(button){
+function Clear(button) {
     mainText.textContent = '';
     AddBorder(button);
 }
 
-function RemoveLastSymbol(button){
+function RemoveLastSymbol(button) {
     let newValue = mainText.textContent;
     newValue = newValue.substring(0, newValue.length - 1);
     mainText.textContent = newValue;
     AddBorder(button);
 }
 
-function PressCalculateButton(button){
+function PressCalculateButton(button) {
     mainText.textContent = CalculateNewCurrentValue();
     bgText.textContent = '';
     currentOperation = '=';
+    lastOperation = null;
     AddBorder(button);
 }
 
 function CalculateNewCurrentValue() {
-    switch (currentOperation)
-    {
+    switch (currentOperation) {
         case '+':
             return currentValue + GetNewCurrentValue();
         case '-':
@@ -60,30 +61,35 @@ function CalculateNewCurrentValue() {
         case '/':
             return currentValue / GetNewCurrentValue();
         default:
-            return currentValue
+            return currentValue;
     }
 }
 
-function AddBorder(button){
+function AddBorder(button) {
     if (pressedButton)
         pressedButton.style.boxShadow = 'none';
     button.style.boxShadow = '1px 1px 1px #76b3d8, -1px -1px 1px #76b3d8';
     pressedButton = button;
 }
 
-function PressOperationButton(operation, button){
+function PressOperationButton(operation, button) {
+    if (currentOperation === operation) {
+        return;
+    }
+
     SetCurrentValue();
     currentOperation = operation;
+    lastOperation = operation;
     bgText.textContent = currentValue + currentOperation;
     mainText.textContent = '';
     AddBorder(button);
 }
 
-function SetCurrentValue(){
+function SetCurrentValue() {
     currentValue = Number(document.getElementById('mainText').textContent);
 }
 
-function GetNewCurrentValue(){
+function GetNewCurrentValue() {
     SetCurrentValue();
     return currentValue;
 }
