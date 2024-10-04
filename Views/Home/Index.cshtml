@@ -2,11 +2,10 @@
     ViewData["Title"] = "Home Page";
 }
 
-<h1>Calc Service Demonstration</h1>
+<h2>Form parameters parsing demo</h2>
 <ul style="font-size: 16px; max-width: 350px;">
-    <li>@Html.ActionLink("Using Model Calc", "PassUsingModel")</li>
-    <li>@Html.ActionLink("Using ViewData Calc", "PassUsingViewData")</li>
-    <li>@Html.ActionLink("Using ViewBag Calc", "PassUsingViewBag")</li>
-    <li>@Html.ActionLink("Using Service injection Calc", "PassUsingService")</li>
+    <li>@Html.ActionLink("Manual parsing in single action", "Manual")</li>
+    <li>@Html.ActionLink("Manual parsing in separate actions", "ManualWithSeparateHandlers")</li>
+    <li>@Html.ActionLink("Model bilding (parameters)", "ModelBuildingInParameters")</li>
+    <li>@Html.ActionLink("Model bilding (separate model)", "ModelBuildingInSeparateModel")</li>
 </ul>
-

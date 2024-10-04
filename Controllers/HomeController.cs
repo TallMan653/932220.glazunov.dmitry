@@ -1,8 +1,8 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Lab11.Models;
+using Lab12.Models;
 
-namespace Lab11.Controllers;
+namespace Lab12.Controllers;
 
 public class HomeController : Controller
 {
@@ -17,62 +17,72 @@ public class HomeController : Controller
     {
         return View();
     }
-    public IActionResult PassUsingModel()
-    {
-        LabModel model = GetNewModel();
-
-        return View(model);
-    }
-
-    public IActionResult PassUsingViewData()
-    {
-        ViewData["data"] = GetNewModel();
-
-        return View();
-    }
-
-    public IActionResult PassUsingViewBag()
-    {
-        ViewBag.data = GetNewModel();
-
-        return View();
-    }
-
-    public IActionResult PassUsingService()
+    [HttpGet]
+    public IActionResult ModelBuildingInParameters()
     {
         return View();
     }
 
+    [HttpPost]
+    public IActionResult ModelBuildingInParameters(double first, string action, double second)
+    {
+        ViewBag.result = Сalculator(first, action, second);
+        return View();
+    }
+
+    [HttpGet]
+    public IActionResult ModelBuildingInSeparateModel()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult ModelBuildingInSeparateModel(FormData data)
+    {
+        ViewBag.result = Сalculator(data.First, data.Action, data.Second);
+        return View();
+    }
+
+    public IActionResult Manual([FromForm]double first, [FromForm]string action, [FromForm]double second)
+    {
+        if (Request.Method == "POST")
+        {
+            ViewBag.result = Сalculator(Double.Parse(Request.Form["first"]), Request.Form["action"], Double.Parse(Request.Form["second"]));
+        }
+        return View();
+    }
+
+    [HttpGet, ActionName("ManualWithSeparateHandlers")]
+    public IActionResult ManualWithSeparateHandlersGet()
+    {
+        return View();
+    }
+
+    [HttpPost, ActionName("ManualWithSeparateHandlers")]
+    public IActionResult ManualWithSeparateHandlersPost()
+    {
+        ViewBag.result = Сalculator(Double.Parse(Request.Form["first"]), Request.Form["action"], Double.Parse(Request.Form["second"]));
+        return View();
+    }
+
+    private string Сalculator(double first, string action, double second)
+    {
+        switch (action)
+        {
+            case "+":
+                return $"{first} + {second} = " + (first + second);
+            case "-":
+                return $"{first} - {second} = " + (first - second);
+            case "*":
+                return $"{first} * {second} = " + (first * second);
+            case "/":
+                return $"{first} / {second} = " + (first / second);
+        }
+        return "";
+    }
     public IActionResult Privacy()
     {
         return View();
-    }
-    
-    public LabModel GetNewModel()
-    {
-        Random random = new Random(DateTime.Now.Second);
-        var first = random.Next(0, 10);
-        var second = random.Next(0, 10);
-
-        int divResult;
-        try
-        {
-            divResult = first / second;
-        }
-        catch (Exception)
-        {
-            divResult = -1;
-        }
-
-        return new LabModel
-        {
-            firstRndNum = first,
-            secondRndNum = second,
-            sumResult = first + second,
-            subResult = first - second,
-            divResult = divResult,
-            mulResult = first * second
-        };
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
